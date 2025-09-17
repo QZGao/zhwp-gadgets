@@ -1,2 +1,2 @@
 # zhwp-gadgets
-Repository for some zhwp gadgets maintained by SuperGrey.
+Repository for some Chinese Wikipedia gadgets maintained by [SuperGrey](https://meta.wikimedia.org/wiki/User:SuperGrey).
