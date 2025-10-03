@@ -10,13 +10,14 @@
 專案頁面：[ACGATool](https://zh.wikipedia.org/wiki/User:SuperGrey/gadgets/ACGATool)
 
 ## 使用方式
+### 發行版本
 将如下程式碼复制至 [Special:MyPage/common.js](https://zh.wikipedia.org/wiki/Special:MyPage/common.js) 頁面：
 
 ```js
 importScript('User:SuperGrey/gadgets/ACGATool/main.js');  // Backlink: [[User:SuperGrey/gadgets/ACGATool]]
 ```
 
-## 建構 Bundled 版本
+### 從原始碼建構
 
 1. **安裝 Node.js**
    - 請先安裝 [Node.js](https://nodejs.org/)。
@@ -37,5 +38,9 @@ importScript('User:SuperGrey/gadgets/ACGATool/main.js');  // Backlink: [[User:Su
      npm run watch
      ```
 
-4. **產出檔案位置**
-   - Bundled 檔案將會輸出至 `dist/bundled.js`。
+4. **安裝至維基**
+   - 將 `dist/bundled.js` 上傳至你的維基用戶頁面，例如 [User:你的用戶名/ACGATool.js](https://zh.wikipedia.org/wiki/Special:MyPage/ACGATool.js)。
+   - 在 [User:你的用戶名/common.js](https://zh.wikipedia.org/wiki/Special:MyPage/common.js) 頁面加入：
+     ```js
+     importScript('User:你的用戶名/ACGATool.js');  // 修改為你的用戶名
+     ```
