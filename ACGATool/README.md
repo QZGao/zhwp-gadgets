@@ -15,3 +15,27 @@
 ```js
 importScript('User:SuperGrey/gadgets/ACGATool/main.js');  // Backlink: [[User:SuperGrey/gadgets/ACGATool]]
 ```
+
+## 建構 Bundled 版本
+
+1. **安裝 Node.js**
+   - 請先安裝 [Node.js](https://nodejs.org/)。
+
+2. **安裝依賴套件**
+   - 在 ACGATool 目錄下執行：
+     ```sh
+     npm install
+     ```
+
+3. **建構 Bundled 版本**
+   - 執行下列指令以產生 `dist/bundled.js`：
+     ```sh
+     npm run build
+     ```
+   - 若需持續監看檔案變動並自動重建，請執行：
+     ```sh
+     npm run watch
+     ```
+
+4. **產出檔案位置**
+   - Bundled 檔案將會輸出至 `dist/bundled.js`。
