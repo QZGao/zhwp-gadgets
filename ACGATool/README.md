@@ -11,7 +11,7 @@
 
 ## 使用方式
 ### 發行版本
-将如下程式碼复制至 [Special:MyPage/common.js](https://zh.wikipedia.org/wiki/Special:MyPage/common.js) 頁面：
+将如下程式碼复制至 [User:你的用戶名/common.js](https://zh.wikipedia.org/wiki/Special:MyPage/common.js) 頁面：
 
 ```js
 importScript('User:SuperGrey/gadgets/ACGATool/main.js');  // Backlink: [[User:SuperGrey/gadgets/ACGATool]]
