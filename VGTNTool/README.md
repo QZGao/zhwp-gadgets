@@ -1,8 +1,8 @@
 # VGTNTool
 
-為 [Module:Vgtn/data](https://zh.wikipedia.org/wiki/Module:Vgtn/data) 提供了更直觀的編輯視圖——現在可以直接在 [WikiProject:電子遊戲/譯名表](https://zh.wikipedia.org/wiki/WikiProject:電子遊戲/譯名表) 上編輯了。 
-
 專案頁面：[VGTNTool](https://zh.wikipedia.org/wiki/User:SuperGrey/gadgets/VGTNTool)
+
+為 [Module:Vgtn/data](https://zh.wikipedia.org/wiki/Module:Vgtn/data) 提供了更直觀的編輯視圖——現在可以直接在 [WikiProject:電子遊戲/譯名表](https://zh.wikipedia.org/wiki/WikiProject:電子遊戲/譯名表) 上編輯了。 
 
 ## 使用方式
 

@@ -29,7 +29,7 @@ export async function getFullText(pageName = '') {
  * @param {object} token An object with properties { text, start, end }.
  * @returns {object} An object with properties { text, start, end } after trimming.
  */
-export function trimToken(token) {
+function trimToken(token) {
     const leadingMatch = token.text.match(/^\s*/);
     const trailingMatch = token.text.match(/\s*$/);
     const leading = leadingMatch ? leadingMatch[0].length : 0;
@@ -46,7 +46,7 @@ export function trimToken(token) {
  * @param {number} offset The absolute start position of innerContent in the wikitext.
  * @returns {Array} An array of tokens; each token is an object { text, start, end }.
  */
-export function splitParameters(innerContent, offset) {
+function splitParameters(innerContent, offset) {
     let tokens = [];
     let lastIndex = 0;
     let braceCount = 0;
@@ -85,7 +85,7 @@ export function splitParameters(innerContent, offset) {
  * @param {number} start The starting index where "{{" is found.
  * @returns {object} An object { endIndex } where endIndex is the index immediately after the closing "}}".
  */
-export function findTemplateEnd(text, start) {
+function findTemplateEnd(text, start) {
     let braceCount = 0;
     let i = start;
     while (i < text.length) {
@@ -113,7 +113,7 @@ export function findTemplateEnd(text, start) {
  * @param {number} start The starting index of the template (expects "{{").
  * @returns {object} An object { template, endIndex }.
  */
-export function parseTemplate(text, start) {
+function parseTemplate(text, start) {
     const templateStart = start;
     const {endIndex: templateEnd} = findTemplateEnd(text, start);
     // Extract inner content (between outer "{{" and "}}").
@@ -244,7 +244,7 @@ export function parseTemplate(text, start) {
  * @param {number} regionEnd The end index of the region.
  * @returns {Array} An array of parsed extra template objects.
  */
-export function parseMultipleTemplates(text, regionStart, regionEnd) {
+function parseMultipleTemplates(text, regionStart, regionEnd) {
     const templates = [];
     const regionText = text.slice(regionStart, regionEnd);
     // Regex: match either start of string (^) or a newline, then capture "{{ACG提名/extra"
@@ -297,7 +297,7 @@ export function getDateSections(text) {
  * @param {object} section A section object { date, start, end }.
  * @returns {Array} Array of entry objects: { template, start, end, type }.
  */
-export function collectEntriesInSection(text, section) {
+function collectEntriesInSection(text, section) {
     let entries = [];
     const sectionText = text.slice(section.start, section.end);
     // Regex: match either {{ACG提名2 or {{ACG提名 (but not /extra)
@@ -411,7 +411,7 @@ export function updateEntryParameters(original, entry, changes) {
  * @param text {string} The text to remove comments from.
  * @returns {string} The text without comments.
  */
-export function removeComments(text) {
+function removeComments(text) {
     text = text.replace(/<!--.*?-->/gs, '');
     return text.trim();
 }
@@ -421,7 +421,7 @@ export function removeComments(text) {
  * @param reason {string} 用戶的提名理由。
  * @returns {object} 規則狀態。
  */
-export function parseUserReason(reason) {
+function parseUserReason(reason) {
     reason = removeComments(reason);
     let ruleStatus = {};
     if (reason.startsWith('{{ACG提名2/request|ver=1|')) {

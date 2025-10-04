@@ -70,7 +70,7 @@ async function checkNomination(date, index, multiCheckStatus = null) {
  * 如果沒有選中任何複選框，則顯示警告通知。
  * 當核對完成後，如果有任何提名被修改，則刷新頁面。
  */
-export function multiCheckNomination() {
+function multiCheckNomination() {
     $('.multi-nomCheck').each(function () {
         let $this = $(this);
         let checkbox = $('<input type="checkbox" class="multi-nomCheck-checkbox">');
@@ -125,14 +125,14 @@ export function multiCheckNomination() {
 /**
  * 點擊登記新提名按鈕時的事件處理。
  */
-export function newNomination() {
+function newNomination() {
     showNewNominationDialog();
 }
 
 /**
  * 點擊歸檔按鈕時的事件處理。
  */
-export function archiveChapter(date) {
+function archiveChapter(date) {
     OO.ui.confirm(state.convByVar({
         hant: '確定要歸檔「', hans: '确定要归档「',
     }) + date + state.convByVar({

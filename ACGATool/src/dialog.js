@@ -34,7 +34,7 @@ function initWindowManager() {
  * @param config
  * @constructor
  */
-export function DynamicWidthTextInputWidget(config) {
+function DynamicWidthTextInputWidget(config) {
     DynamicWidthTextInputWidget.parent.call(this, config);
     this.$measure = $('<span>').css({
         position: 'absolute', visibility: 'hidden', whiteSpace: 'pre', fontSize: '14px', fontFamily: 'sans-serif',
@@ -61,7 +61,7 @@ function initDynamicWidthTextInputWidget() {
  * @param config
  * @constructor
  */
-export function RuleCheckboxInputWidget(config) {
+function RuleCheckboxInputWidget(config) {
     RuleCheckboxInputWidget.parent.call(this, config);
     this.ruleset = config.ruleset;
     this.nomidx = config.nomidx;
@@ -148,7 +148,7 @@ function initRuleCheckboxInputWidget() {
  * @param {object} nomData 提名資料（非必須）。無資料時為新提名。
  * @returns {OO.ui.FieldsetLayout} 提名表單。
  */
-export function generateNominationFieldset(nomData = null) {
+function generateNominationFieldset(nomData = null) {
     let awarder, pageName, ruleStatus;
     if (nomData) {
         awarder = nomData.awarder;
@@ -258,7 +258,7 @@ export function generateNominationFieldset(nomData = null) {
  * @param nomData 提名資料。
  * @returns {OO.ui.FieldsetLayout} 提名檢查單。
  */
-export async function generateChecklistFieldset(nomData) {
+async function generateChecklistFieldset(nomData) {
     let awarder = nomData.awarder;
     let pageName = nomData.pageName;
     let ruleStatus = nomData.ruleStatus;
@@ -450,7 +450,7 @@ export async function generateChecklistFieldset(nomData) {
  * @param config
  * @constructor
  */
-export function NewNominationDialog(config) {
+function NewNominationDialog(config) {
     NewNominationDialog.super.call(this, config);
 }
 
@@ -586,7 +586,7 @@ export function showNewNominationDialog() {
  * @param config
  * @constructor
  */
-export function EditNominationDialog(config) {
+function EditNominationDialog(config) {
     EditNominationDialog.super.call(this, config);
 }
 
@@ -676,7 +676,7 @@ export function showEditNominationDialog(nomData) {
  * @param config
  * @constructor
  */
-export function CheckNominationDialog(config) {
+function CheckNominationDialog(config) {
     CheckNominationDialog.super.call(this, config);
 }
 

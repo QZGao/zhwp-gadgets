@@ -1,13 +1,13 @@
 # ACGATool
 
+專案頁面：[ACGATool](https://zh.wikipedia.org/wiki/User:SuperGrey/gadgets/ACGATool)
+
 [維基ACG專題獎](https://zh.wikipedia.org/wiki/WikiProject:ACG/維基ACG專題獎) 專用提名、核分小工具。
 
 - **新提名：** 點擊 [登記處](https://zh.wikipedia.org/wiki/WikiProject:ACG/維基ACG專題獎/登記處) 頁面頂部「登記新提名」按鈕，即可打開「新提名」視窗。可同時提名多則條目。按「儲存」即發佈至登記處頁面。
 - **編輯提名：** 點擊登記處內任一已有提名中條目名稱右側出現的「筆」圖示，即可打開「編輯提名」視窗。在此，可對單則提名進行修改。介面與新提名類似。按「儲存」即完成修訂。
 - **核對分數：** 點擊登記處內任一已有提名中提名核對欄出現的「螢光筆」圖示，即可打開「提名核分」視窗。在此，可對單則提名進行核分，也可以對已核分提名重新核分。除了可選擇部分項得分外，也可直接選取「提名無效」。按「儲存」即完成核分。此外，小工具將自動於 [Module:ACGaward/list](https://zh.wikipedia.org/wiki/Module:ACGaward/list) 登記分數（但不會自動傳送「頒獎」通知）。
 - **歸檔：** 點擊登記處內任一章節標題的「歸檔」連結，即可一鍵歸檔該章節。
-
-專案頁面：[ACGATool](https://zh.wikipedia.org/wiki/User:SuperGrey/gadgets/ACGATool)
 
 ## 使用方式
 ### 發行版本
