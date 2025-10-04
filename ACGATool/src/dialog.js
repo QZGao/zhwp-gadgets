@@ -3,12 +3,12 @@ import {getOrderedRuleStatus, NominationRules, NominationRuleSet} from "./rules.
 import {saveModifiedNomination, saveNewNomination, saveNominationCheck} from "./dom.js";
 import {getXToolsInfo} from "./api.js";
 
-export let windowManager = null;  // Window manager for OOUI dialogs
-export let newNominationDialog = null;  // 新提名dialog
-export let editNominationDialog = null;  // 修改提名dialog
-export let editNominationDialogContent = new OO.ui.FieldsetLayout(); // 修改提名dialog的內容池
-export let checkNominationDialog = null;  // 檢查提名dialog
-export let checkNominationDialogContent = new OO.ui.FieldsetLayout(); // 檢查提名dialog的內容池
+let windowManager = null;  // Window manager for OOUI dialogs
+let newNominationDialog = null;  // 新提名dialog
+let editNominationDialog = null;  // 修改提名dialog
+let editNominationDialogContent = new OO.ui.FieldsetLayout(); // 修改提名dialog的內容池
+let checkNominationDialog = null;  // 檢查提名dialog
+let checkNominationDialogContent = new OO.ui.FieldsetLayout(); // 檢查提名dialog的內容池
 
 export function initOOUI() {
     // Initialize OOUI custom widgets
@@ -579,6 +579,18 @@ export function showNewNominationDialog() {
     });
     windowManager.addWindows([newNominationDialog]);
     windowManager.openWindow(newNominationDialog);
+}
+
+/**
+ * 獲取新提名對話框中的附加說明內容。
+ * @returns {string} 附加說明內容。
+ */
+export function getNewNominationDialogAdditionalMessage() {
+    if (newNominationDialog) {
+        return newNominationDialog.messageInput.getValue().trim();
+    }
+    console.log('[ACGATool] Warning: newNominationDialog is not initialized.');
+    return '';
 }
 
 /**

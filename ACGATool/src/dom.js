@@ -11,7 +11,10 @@ import {
     updateEntryParameters
 } from "./api.js";
 import {
-    newNominationDialog, showCheckNominationDialog, showEditNominationDialog, showNewNominationDialog
+    getNewNominationDialogAdditionalMessage,
+    showCheckNominationDialog,
+    showEditNominationDialog,
+    showNewNominationDialog
 } from "./dialog.js";
 import {generateReason} from "./rules.js";
 
@@ -385,7 +388,7 @@ export async function saveNewNomination() {
     proposedWikitext += "\n}}\n'''提名人：'''" + signature;
 
     // 附加說明
-    let message = newNominationDialog.messageInput.getValue().trim();
+    let message = getNewNominationDialogAdditionalMessage();
     if (message !== '') {
         proposedWikitext += "\n: {{說明}}：" + message + '--' + signature;
     }
