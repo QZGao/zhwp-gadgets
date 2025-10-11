@@ -4,7 +4,7 @@
     'use strict';
 
     const VGTNTool = {
-        api: new mw.Api({userAgent: 'VGTNTool/1.0.1'}),  // MediaWiki API 實例
+        api: new mw.Api({userAgent: 'VGTNTool/1.0.2'}),  // MediaWiki API 實例
         editorContainerId: 'vgtn-editor',  // 標記當次 hook 是否完成載入的 pseudo 元素
         messageNoChanges: '無差異。',  // 無差異時顯示的訊息
         addedSections: [],  // 儲存新增的章節
@@ -254,10 +254,9 @@
          * 在指定的 tbody 中添加一行表格，並填充記錄數據。
          * @param $tbody {jQuery} - 要添加行的 tbody 元素。
          * @param record {Object} - 包含行數據的記錄對象。
-         * @param config {Object} - 可選配置對象，用於定制行的行為。
          * @return {jQuery} 返回添加的行元素。
          */
-        setTableRow: function ($tbody, record = {}, config = {}) {
+        setTableRow: function ($tbody, record = {}) {
             const $row = $('<tr>').addClass('vgtn-editable-row');
             $row.append($('<th>')
                 .attr('scope', 'row')
@@ -265,7 +264,7 @@
                     'font-weight': 'normal', 'text-align': 'left'
                 })
                 .html(this.EntryNameField(record)));
-            $row.append($('<td>').html(this.LinkVariableField(record, config)));
+            $row.append($('<td>').html(this.LinkVariableField(record)));
             $row.append($('<td>').html(this.LocaleVariableField(record)));
             $row.append($('<td>').html(this.CommentField(record)));
 
@@ -290,11 +289,7 @@
                 .text('新增行')
                 .on('click', e => {
                     e.preventDefault();
-                    const rowConfig = {};
-                    if ($table.data('vgtn-section') === '英語配音員') {
-                        rowConfig.showBtva = true;  // Show BTVA column for English voice actors
-                    }
-                    const $newRow = this.setTableRow($table.find('tbody'), {}, rowConfig);
+                    const $newRow = this.setTableRow($table.find('tbody'), {});
                     $table.trigger("addRows", [$newRow]);
                 });
             $tfootCell.append($addRowButton);
@@ -389,12 +384,10 @@
             $ogTable.hide();  // Hide the original table
             $mwHeading3.after($table);  // Insert the cloned table after the heading
             const $tbody = $table.find('tbody');
-            const rowConfig = {};
-            if (sectionTitle === '英語配音員') rowConfig.showBtva = true;  // Show BTVA column for English voice actors
             for (let i = 0; i < entries[sectionTitle].length; i++) {
                 let record = entries[sectionTitle][i];
                 if (Array.isArray(record)) record = {"1": record[0]};  // convert Lua array (grammar fault) to object
-                this.setTableRow($tbody, record, rowConfig);
+                this.setTableRow($tbody, record);
             }
 
             this.setHeading3EditingButtons($mwHeading3, $ogTable, $table);
@@ -475,7 +468,7 @@
             if ($deletedSections.length > 0) {
                 $deletedSections.each(function () {
                     const $h3 = $(this);
-                    let sectionName = '';
+                    let sectionName;
                     if ($h3.hasClass('vgtn-new-section')) {
                         // Delete the added section
                         sectionName = $h3.find('.vgtn-new-section-name').text().trim();
@@ -536,7 +529,6 @@
                     const link = $row.find('.vgtn-record-link').text().trim();
                     const iw = $row.find('.vgtn-record-iw').text().trim();
                     const wd = $row.find('.vgtn-record-wd').text().trim();
-                    const btva = $row.find('.vgtn-record-btva').text().trim();
                     const namu = $row.find('.vgtn-record-namu').text().trim();
                     const tw = $row.find('.vgtn-record-tw').text().trim();
                     const hk = $row.find('.vgtn-record-hk').text().trim();
@@ -561,7 +553,6 @@
                     if (link) sectionNewRows += `, link="${link}"`;
                     if (iw) sectionNewRows += `, iw="${iw}"`;
                     if (wd) sectionNewRows += `, wd="${wd}"`;
-                    if (btva) sectionNewRows += `, btva="${btva}"`;
                     if (namu) sectionNewRows += `, namu="${namu}"`;
                     if (aliases.length > 0) sectionNewRows += `, aliases={ "${aliases.join('", "')}" }`;
                     if (comment) sectionNewRows += `, comment="${comment}"`;
@@ -757,11 +748,10 @@
         /**
          * 生成可編輯表格的相關連結欄位。
          * @param record {Object} - 包含記錄數據的對象。
-         * @param config {Object} - 可選配置對象，用於定制連結欄位的行為。
          * @returns {jQuery} 返回包含可編輯連結欄位的 jQuery 物件。
          * @constructor
          */
-        LinkVariableField: function (record, config = {}) {
+        LinkVariableField: function (record) {
             const $editableField = $('<div>').addClass('vgtn-editable-field');
             const linkNames = [
                 ['link', '本站連結'],
@@ -769,9 +759,6 @@
                 ['wd', '維基數據'],
                 ['namu', '納木維基']
             ];
-            if (config.showBtva) {
-                linkNames.push(['btva', 'BTVA']);
-            }
             linkNames.forEach(([key, label]) => {
                 const $editableSpan = $('<span>')
                     .data('vgtn-record', key)
