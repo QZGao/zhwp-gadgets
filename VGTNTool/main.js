@@ -188,7 +188,7 @@
             if (res.edit && res.edit.result === 'Success') {
                 console.log("[VGTNTool] 資料已成功儲存。");
                 mw.notify('資料已成功儲存。', {type: 'success', autoHide: true, autoHideSeconds: 3});
-                this.refreshPage();
+                refreshPage();
                 return false;
             } else if (res.error && res.error.code === 'editconflict') {
                 console.error("[VGTNTool] 儲存資料時發生編輯衝突：", res);
