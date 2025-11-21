@@ -1,6 +1,6 @@
 {
-  "name": "reaction",
-  "version": "1.0.0",
+  "name": "vgtntool",
+  "version": "1.0.2",
   "private": true,
   "description": "",
   "type": "module",
@@ -9,8 +9,13 @@
     "watch": "node build.mjs --watch"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.33",
     "@types/node": "^24.10.1",
     "@types/oojs-ui": "^0.49.4",
+    "@types/tablesorter": "^2.31.8",
     "esbuild": "^0.21.5"
+  },
+  "dependencies": {
+    "tablesorter": "^2.32.0"
   }
 }
