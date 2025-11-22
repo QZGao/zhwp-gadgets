@@ -31,6 +31,7 @@ export async function showDiffDialog(diffHtml: JQuery<HTMLElement> | null, diffT
                     save: state.convByVar({hant: '儲存', hans: '保存'}),
                     cancel: state.convByVar({hant: '取消', hans: '取消'}),
                     noDiff: state.convByVar({hant: '無差異。', hans: '无差异。'}),
+                    summaryPlaceholder: state.convByVar({hant: '編輯摘要（可留空）', hans: '编辑摘要（可留空）'}),
                 }, data() {
                     return {
                         open: true,
@@ -38,6 +39,7 @@ export async function showDiffDialog(diffHtml: JQuery<HTMLElement> | null, diffT
                         diffText: diffText || '',
                         startTimestamp: startTimestamp || '',
                         baseTimestamp: baseTimestamp || '',
+                        editSummary: '',
                         saving: false
                     };
                 }, computed: {
@@ -61,7 +63,7 @@ export async function showDiffDialog(diffHtml: JQuery<HTMLElement> | null, diffT
                         if (this.saving) return;
                         this.saving = true;
                         try {
-                            const res: any = await saveModuleText(this.diffText, this.startTimestamp, this.baseTimestamp);
+                            const res: any = await saveModuleText(this.diffText, this.startTimestamp, this.baseTimestamp, this.editSummary);
                             this.saving = false;
                             if (res === false) {
                                 finalize({action: 'save'});
@@ -101,6 +103,11 @@ export async function showDiffDialog(diffHtml: JQuery<HTMLElement> | null, diffT
                                     {{ $options.i18n.noDiff }}
                                 </div>
                                 <div v-else class="vgtn-diff-dialog__diff" v-html="diffHtml"></div>
+                                <cdx-text-input
+                                    v-model="editSummary"
+                                    :placeholder="$options.i18n.summaryPlaceholder"
+                                    class="vgtn-diff-dialog__summary-input"
+                                />
                             </div>
 
                         </cdx-dialog>

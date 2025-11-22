@@ -91,6 +91,9 @@ function injectStylesheet() {
             padding: 10px;
             overflow-x: auto;
         }
+        .vgtn-diff-dialog__summary-input {
+            margin-top: 20px;
+        }
     `);
 }
 

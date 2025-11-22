@@ -76,12 +76,14 @@ export async function fetchDiffHtml(oldText: string, newText: string): Promise<J
  * @param baseTimestamp {string} - 基礎時間戳。
  * @returns {Promise<boolean>} 返回是否成功初始化差異對話框。
  */
-export async function saveModuleText(diffText: string, startTimestamp: string, baseTimestamp: string): Promise<boolean> {
+export async function saveModuleText(diffText: string, startTimestamp: string, baseTimestamp: string, summary?: string): Promise<boolean> {
+    const trimmedSummary = (summary || '').trim();
+    const editSummary = trimmedSummary ? `[[User:SuperGrey/gadgets/VGTNTool|編輯資料]]：${trimmedSummary}` : '[[User:SuperGrey/gadgets/VGTNTool|編輯資料]]';
     const res = await getApi().postWithToken('csrf', {
         action: 'edit',
         title: 'Module:Vgtn/data',
         text: diffText,
-        summary: '[[User:SuperGrey/gadgets/VGTNTool|編輯資料]]',
+        summary: editSummary,
         starttimestamp: startTimestamp,
         basetimestamp: baseTimestamp,
     });

@@ -468,8 +468,14 @@ function EntryNameField(record) {
     const $hanjaCheckbox = $('<input>')
         .attr('type', 'checkbox')
         .data('vgtn-record', 'hanja')
-        .addClass('vgtn-editable-checkbox vgtn-record-hanja')
-        .prop('checked', record.hanja === true);
+        .addClass('vgtn-editable-checkbox vgtn-record-hanja');
+    const hanjaChecked = record.hanja === true;
+    $hanjaCheckbox.prop('checked', hanjaChecked);
+    if (hanjaChecked) {
+        $hanjaCheckbox.attr('checked', 'checked');
+    } else {
+        $hanjaCheckbox.removeAttr('checked');
+    }
     const $hanjaCheckboxBundle = $('<span>')
         .addClass('vgtn-editable-bundle vgtn-editable-hanja-bundle')
         .append($('<br>'))
