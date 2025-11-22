@@ -2,6 +2,9 @@ import {addEditButtons} from "./dom";
 
 declare var mw: any;
 
+/**
+ * 注入自訂樣式表。
+ */
 function injectStylesheet() {
     // Add CSS stylesheet
     mw.util.addCSS(`
@@ -92,18 +95,32 @@ function injectStylesheet() {
 }
 
 /**
+ * 注入樣式表及功能按鈕。
+ */
+function initInjection() {
+    injectStylesheet();
+
+    // Add edit buttons to each section when the content is loaded
+    mw.hook('wikipage.content').add($content => addEditButtons($content));
+}
+
+/**
  * 程式入口。
  */
 function init() {
     if (mw.config.get('wgPageName') !== 'WikiProject:电子游戏/译名表') return;
     mw.loader.load('mediawiki.diff.styles');
 
-    console.log("[VGTNTool] 小工具已載入。");
+    mw.loader.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.32.0/js/jquery.tablesorter.min.js').then(() => {
+        console.log("[VGTNTool] 小工具已載入。");
 
-    injectStylesheet();
+        initInjection();
+    }).catch((e) => {
+        console.error('[VGTNTool] 無法載入 jQuery TableSorter 函式庫', e);
+        mw.notify('無法載入 jQuery TableSorter 函式庫，部分功能可能無法使用。', {type: 'error', title: 'VGTNTool 小工具'});
 
-    // Add edit buttons to each section when the content is loaded
-    mw.hook('wikipage.content').add($content => addEditButtons($content));
+        initInjection();
+    });
 }
 
 init();
